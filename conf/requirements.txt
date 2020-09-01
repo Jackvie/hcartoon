@@ -17,3 +17,4 @@ django_redis==4.12.1
 pymysql==0.10.0
 # yum install mysql-devel
 mysqlclient==2.0.1
+cryptography==3.1

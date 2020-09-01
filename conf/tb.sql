@@ -1,0 +1,2 @@
+-- CREATE DATABASE cartoon DEFAULT CHARSET utf8;
+
