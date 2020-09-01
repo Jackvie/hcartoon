@@ -15,9 +15,8 @@ database:
     PASSWORD: a123456
     HOST: 172.18.196.63
     PORT: 3307
-...
 
----
+
 cache:
   default:
     BACKEND: django_redis.cache.RedisCache
@@ -29,4 +28,3 @@ cache:
     LOCATION: redis://172.18.196.63:6380/1
     OPTIONS:
       CLIENT_CLASS: django_redis.client.DefaultClient
-...
