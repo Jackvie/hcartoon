@@ -11,12 +11,14 @@ import os
 import configparser
 import yaml
 
-configure = configparser.ConfigParser()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.sys.path.insert(0, BASE_DIR)
-configure.read(BASE_DIR+"/conf/system.ini")
-with open(BASE_DIR+'/conf/const.yml', 'rb', ) as f:
-    CONST:dict = yaml.safe_load(f)
+
+# configure = configparser.ConfigParser()
+# configure.read(BASE_DIR+"/conf/const.ini")
+
+with open(BASE_DIR+'/conf/system.yml', 'rb', ) as f:
+    system_conf:dict = yaml.safe_load(f)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 # python3 /code/oms_system/manage.py runserver
@@ -24,8 +26,6 @@ with open(BASE_DIR+'/conf/const.yml', 'rb', ) as f:
 # 不同启动方式 分别print(os.popen('pwd').readlines())
 # . 代表的是 代码启动文件是所在目录 而非manage.py文件所在目录
 # 但这仅仅是启动文件的.所指示的含义  如果导入了别的包 包的.还是那个文件所再目录
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -85,24 +85,9 @@ WSGI_APPLICATION = 'oms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'USER': configure.get('database.default', 'USER'),
-        'NAME': configure.get('database.default', 'NAME'),
-        'PASSWORD': configure.get('database.default', 'PASSWORD'),
-        'HOST': configure.get('database.default', 'HOST'),
-        'PORT': configure.get('database.default', 'PORT'),
-    },
-    'read_default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'USER': configure.get('database.read_default', 'USER'),
-        'NAME': configure.get('database.read_default', 'NAME'),
-        'PASSWORD': configure.get('database.read_default', 'PASSWORD'),
-        'HOST': configure.get('database.read_default', 'HOST'),
-        'PORT': configure.get('database.read_default', 'PORT'),
-    },
-}
+DATABASES = system_conf['database']
+
+CACHES = system_conf['cache']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

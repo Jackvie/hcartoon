@@ -24,6 +24,9 @@ source /etc/locale.conf
 ```
 # 安装python
 https://www.jianshu.com/p/b978e46de442
+
+netstat -lntup
+https://www.cnblogs.com/ftl1012/p/netstat.html
 ```
 
 ```
@@ -31,11 +34,20 @@ https://www.jianshu.com/p/b978e46de442
 拉取镜像
 https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html
 # 创建mysql容器
-sudo docker run -p 3307:3306 -p 33060:33060 --name mysql -v /home/yuntao/mysql/conf:/etc/mysql/conf.d -v /home/yuntao/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=a123456 -e "TZ=UTC" -e "LANG=C.UTF-8" -d mysql
+sudo docker run -p 3307:3306 -p 33060:33060 --name mysql --restart on-failure -v /home/yuntao/mysql/conf:/etc/mysql/conf.d -v /home/yuntao/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=a123456 -e "TZ=UTC" -e "LANG=C.UTF-8" -d mysql
 
 centos容器安装mysql客户端
 yum -y install mysql
 # 使用客户端链接mysql容器的服务端
 # sudo systemctl restart mysql.service
 mysql -uroot -h 172.18.196.63 -P 3307 -p
+```
+
+```
+# 安装redis i 附加命令 t 分配终端 d 后台运行
+docker run -p 6380:6379 -v /home/yuntao/redis:/data --name redis --restart on-failure -id redis redis-server --appendonly yes
+
+centos容器 安装redis
+yum install -y  redis
+redis-cli -h 172.18.196.63 -p 6380
 ```
