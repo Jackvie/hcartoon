@@ -25,3 +25,17 @@ source /etc/locale.conf
 # 安装python
 https://www.jianshu.com/p/b978e46de442
 ```
+
+```
+# 安装 mysql
+拉取镜像
+https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html
+# 创建mysql容器
+sudo docker run -p 3307:3306 -p 33060:33060 --name mysql -v /home/yuntao/mysql/conf:/etc/mysql/conf.d -v /home/yuntao/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=a123456 -e "TZ=UTC" -e "LANG=C.UTF-8" -d mysql
+
+centos容器安装mysql客户端
+yum -y install mysql
+# 使用客户端链接mysql容器的服务端
+# sudo systemctl restart mysql.service
+mysql -uroot -h 172.18.196.63 -P 3307 -p
+```
