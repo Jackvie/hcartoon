@@ -1,18 +1,22 @@
 import dataclasses
+import configparser
 
-
-__all__ = ('const', )
+__all__ = ('const', 'configure')
 
 
 @dataclasses.dataclass(frozen=True)
-class produce:
+class produce_const:
     a = 1
     b = 1
 
 
 @dataclasses.dataclass(frozen=True)
-class develop(produce):
+class develop_const(produce_const):
     a = 2
 
 
-const = develop()
+const = develop_const()
+
+
+configure = configparser.ConfigParser()
+configure.read("./outside.ini")

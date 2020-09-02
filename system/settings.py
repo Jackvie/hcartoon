@@ -8,14 +8,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import configparser
 import yaml
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.sys.path.insert(0, BASE_DIR)
-
-# configure = configparser.ConfigParser()
-# configure.read(BASE_DIR+"/conf/action.ini")
 
 with open(BASE_DIR+'/conf/system.yml', 'rb', ) as f:
     system_conf:dict = yaml.safe_load(f)
